@@ -44,7 +44,7 @@ function Wallet({
           onChange={onChange}
         ></input>
       </label>
-      <div>Address:{address}</div>
+      <div className='balance'>Address:{address.slice(0, 10)}...</div>
       <div className='balance'>Balance: {balance}</div>
     </div>
   );

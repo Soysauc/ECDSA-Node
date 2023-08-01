@@ -1,9 +1,24 @@
-import server from "./server";
+import server from './server';
+import { secp256k1 } from 'ethereum-cryptography/secp256k1';
+import { toHex, utf8ToBytes } from 'ethereum-cryptography/utils';
+import { sha256 } from 'ethereum-cryptography/sha256.js';
 
-function Wallet({ address, setAddress, balance, setBalance }) {
+function Wallet({
+  address,
+  setAddress,
+  balance,
+  setBalance,
+  signature,
+  setSignature,
+  privateKey,
+  setPrivateKey,
+}) {
   async function onChange(evt) {
-    const address = evt.target.value;
-    setAddress(address);
+    const privateKey = evt.target.value;
+    setPrivateKey(privateKey);
+    console.log(privateKey);
+
+    const address = secp256k1.getPublicKey(sha256(utf8ToBytes(privateKey)));
     if (address) {
       const {
         data: { balance },
@@ -13,17 +28,24 @@ function Wallet({ address, setAddress, balance, setBalance }) {
       setBalance(0);
     }
   }
+  console.log(balance);
 
   return (
-    <div className="container wallet">
+    <div className='container wallet'>
       <h1>Your Wallet</h1>
 
       <label>
-        Wallet Address
-        <input placeholder="Type an address, for example: 0x1" value={address} onChange={onChange}></input>
+        Private Key{' '}
+        <input
+          // placeholder='Type a signature, for example: 0x1'
+          placeholder='Type a private key, for example: 0x1'
+          value={privateKey}
+          // value={signature}
+          onChange={onChange}
+        ></input>
       </label>
-
-      <div className="balance">Balance: {balance}</div>
+      <div>Address:{address}</div>
+      <div className='balance'>Balance: {balance}</div>
     </div>
   );
 }

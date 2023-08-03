@@ -1,7 +1,9 @@
 body {
-  font-family: "Muli", sans-serif;
+  // font-family: 'Muli', sans-serif;
+  font-family: 'Poppins', sans-serif;
+
   font-weight: 300;
-  background-color: #e2e8f0;
+  background-color: #070417;
   padding: 40px;
 }
 
@@ -9,9 +11,9 @@ label {
   display: flex;
   flex-direction: column;
   letter-spacing: 0.05rem;
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 400;
-  color: #222;
+  color: #cbd5e0;
 }
 
 .app {
@@ -25,10 +27,11 @@ label {
 .container {
   flex-grow: 1;
   margin: 0 20px;
-  background-color: #fff;
+  background-color: #292639;
+  color: #cbd5e0;
   border: 1px solid #cbd5e0;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  border-radius: 0.375rem;
+  border-radius: 10px;
   padding: 40px;
 
   label {
@@ -42,7 +45,7 @@ label {
 
 input {
   padding: 10px 0;
-  border-radius: 0.125rem;
+  border-radius: 10px;
   border: 1px solid rgb(226, 232, 240);
   background-color: #fdfdfe;
   padding-inline-start: 0.75rem;
@@ -50,15 +53,15 @@ input {
 }
 
 .button {
-  background-color: #319795;
-  border-radius: 0.125rem;
+  background-color: #6add8a;
+  border-radius: 10px;
   padding: 10px 20px;
   color: white;
   display: inline-flex;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 400;
-  font-size: .9em;
+  font-size: 0.9em;
   &:hover {
     cursor: pointer;
   }
@@ -72,7 +75,7 @@ input {
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 400;
-    font-size: .9em;
+    font-size: 0.9em;
     display: inline-flex;
     margin-top: 10px;
     padding: 0.75rem;

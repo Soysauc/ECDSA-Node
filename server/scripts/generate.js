@@ -6,3 +6,15 @@ const { keccak256 } = require('ethereum-cryptography/keccak');
 
 console.log('privateKey:', toHex(privateKey));
 console.log('public Key:', toHex(publicKey));
+
+/*
+
+
+
+
+
+
+
+
+
+*/

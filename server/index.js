@@ -2,6 +2,9 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = 3042;
+const recoverKey = require('./scripts/recoverKey');
+const getAddress = require('./scripts/getAddress');
+const { toHex } = require('ethereum-cryptography/utils');
 
 app.use(cors());
 app.use(express.json());
@@ -18,8 +21,20 @@ app.get('/balance/:address', (req, res) => {
   res.send({ balance });
 });
 
-app.post('/send', (req, res) => {
-  const { sender, recipient, amount } = req.body;
+app.post('/send', async (req, res) => {
+  const { sender, recipient, amount, signature } = req.body;
+
+  const publicKey = await recoverKey(
+    JSON.stringify({ sender, recipient, amount }),
+    signature.signature,
+    signature.recoveryBit
+  );
+  const recoveredAddress = toHex(getAddress(publicKey));
+
+  if (recoveredAddress !== sender) {
+    res.status(400).send({ message: 'Invalid signature!' });
+    return;
+  }
 
   setInitialBalance(sender);
   setInitialBalance(recipient);

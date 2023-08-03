@@ -1,4 +1,6 @@
 import server from './server';
+import { utf8ToBytes } from 'ethereum-cryptography/utils';
+import { secp256k1 } from 'ethereum-cryptography/secp256k1.js';
 
 function Wallet({
   address,
